@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<title>restourant</title>
+
+		<script>
+			window.onload = function() {
+				shadows();
+			}
+			function shadows() {
+				var elements = document.getElementsByClassName('shadow');
+				for(var i = 0; i < elements.length; i++)
+				{
+				  var z = parseInt(getComputedStyle(elements.item(i)).zIndex);
+					//alert(z);
+				  //var shadowSize = z
+				  if(z < 0) {
+					  z *= -1;
+					  (elements.item(i)).style.boxShadow = "0 " + 0 + "px " + (z) + "px " + 0 + "px black inset";
+				  }
+				  else {
+					  (elements.item(i)).style.boxShadow = "0 " + 0 + "px " + (z) + "px " + 0 + "px black";
+				  }
+
+				}
+			}
+			function scroll() {
+				var filters = document.getElementById('filters');
+		    var height = document.getElementsByTagName('nav')[0].offsetHeight;
+		    //alert(height);
+		    if ( window.pageYOffset > height && !filters.classList.contains('fixed-filters')) {
+		        filters.classList.add("fixed-filters");
+
+						var margin = parseInt(getComputedStyle(document.querySelector('#container')).marginTop);
+						//alert((filters.offsetHeight + margin));
+		        document.getElementById('container').style.marginTop = (filters.offsetHeight + margin) + "px";
+		    }
+				else if (window.pageYOffset > height && filters.classList.contains('fixed-filters')) {
+
+				}
+		    else {
+		        filters.classList.remove("fixed-filters");
+		        document.getElementById('container').style.marginTop = null;
+		    }
+			}
+			//window.onscroll = function() { scroll(); }
+
+			function hasClass(element, cls) {
+			    return element.className.indexOf(cls) > -1;
+			}
+
+			function collapse() {
+				var filter = document.getElementById('filters');
+				var filterBar = document.getElementById("filtersBar");
+				var arrow = document.getElementById('arrow');
+				if(hasClass(filter, 'collapsed')) {
+					filter.classList.remove('collapsed');
+					arrow.classList.add('arrow-up');
+					arrow.classList.remove('arrow-down');
+					//arrow.classList.remove('arrow-down');
+					if (filter.style.removeProperty) {
+					    filter.style.removeProperty('max-height');
+					} else {
+					    filter.style.removeAttribute('max-height');
+					}
+				}
+				else {
+					filter.style.maxHeight = filterBar.offsetHeight + "px";
+					filter.classList.add('collapsed');
+					arrow.classList.add('arrow-down');
+					arrow.classList.remove('arrow-up');
+
+				}
+			}
+
+		</script>
+		
+	</head>
+	<body>
+		<div class="shadow" style="z-index: 2; position: relative">
+			<nav style="z-index: 2; position: relative" class="clearfix shadow">
+				<div class="wrapper">
+					<h1><a href="index.html">res<span style="font-weight: 400">TOUR</span>ants</a></h1>
+					<form>
+					  <input class="searchbar search-field" type="text" name="firstname" placeholder="Around"><!-Cannot have space between inline elements that are supposed to be together in code.
+					  -><input class="searchbar search-field" type="text" name="lastname" placeholder="What"></input><!-Cannot have space between inline elements that are supposed to be together in code.
+					  -><input class="searchbar submit-button" type="submit" value="Submit"></input>
+					</form>
+				</div>
+			</nav>
+			<div id="filters" style="z-index: 1; position: relative;" class="">
+				<div id="filtersBar" class="clearfix shadow" onclick="collapse()" style="z-index: 1; position: relative">
+					<div class="wrapper">
+						<h1 style="float:left">Filters</h1>
+						<div id="arrow" style="float: right; position: relative; z-index: -1;" class="triangle-with-shadow arrow-up"></div>
+					</div>
+				</div>
+				<div class="wrapper">
+					<form>
+						<ul>
+							<li><input type="checkbox" value="sample" id="sample">
+							<label>Sample Checkbox</label></li>
+							<li><input type="checkbox" value="sample" id="sample">
+							<label>Sample Checkbox</label></li>
+							<li><input type="checkbox" value="sample" id="sample">
+							<label>Sample Checkbox</label></li>
+							<li><input type="checkbox" value="sample" id="sample">
+							<label>Sample Checkbox</label></li>
+						</ul>
+						<input class="update" type="submit" value="Update">
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+		<div id="container" class="wrapper">
+			<div class="search-item shadow">
+				<img src="http://placehold.it/200x200">
+				<h1><a href="review.html">Restaurant Name</a></h1>
+				<div class="stars">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+				</div>
+				<h2>Location | Distance</h2>
+				<h3>Categories</h3>
+			</div>
+			<div class="search-item shadow">
+				<img src="http://placehold.it/200x200">
+				<h1><a href="review.html">Restaurant Name</a></h1>
+				<div class="stars">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+				</div>
+				<h2>Location | Distance</h2>
+				<h3>Categories</h3>
+			</div>
+			<div class="search-item shadow">
+				<img src="http://placehold.it/200x200">
+				<h1><a href="review.html">Restaurant Name</a></h1>
+				<div class="stars">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+				</div>
+				<h2>Location | Distance</h2>
+				<h3>Categories</h3>
+			</div>
+			<div class="search-item shadow">
+				<img src="http://placehold.it/200x200">
+				<h1><a href="review.html">Restaurant Name</a></h1>
+				<div class="stars">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+				</div>
+				<h2>Location | Distance</h2>
+				<h3>Categories</h3>
+			</div>
+			<div class="search-item shadow">
+				<img src="http://placehold.it/200x200">
+				<h1><a href="review.html">Restaurant Name</a></h1>
+				<div class="stars">
+					<img src="images/star.png">
+					<img src="images/star.png">
+				</div>
+				<h2>Location | Distance</h2>
+				<h3>Categories</h3>
+			</div>
+			<div class="search-item shadow">
+				<img src="http://placehold.it/200x200">
+				<h1><a href="review.html">Restaurant Name</a></h1>
+				<div class="stars">
+					<img src="images/star.png">
+
+				</div>
+				<h2>Location | Distance</h2>
+				<h3>Categories</h3>
+			</div>
+		</div>
+	</body>
+</html>

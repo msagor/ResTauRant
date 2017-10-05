@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<title>restourant</title>
+
+		<script>
+			window.onload = function() {
+				shadows();
+			}
+			function shadows() {
+				var elements = document.getElementsByClassName('shadow');
+				for(var i = 0; i < elements.length; i++)
+				{
+				  var z = parseInt(getComputedStyle(elements.item(i)).zIndex);
+				  /*var pos =  getComputedStyle(elements.item(i)).position;
+				  //alert(pos);
+				  if(pos == 'static') {
+					  //(elements.item(i)).style.position = 'relative';
+				  }*/
+					//alert(z);
+				  //var shadowSize = z
+				  if(z < 0) {
+					  z *= -1;
+					  (elements.item(i)).style.boxShadow = "0 " + 0 + "px " + (z) + "px " + 0 + "px black inset";
+				  }
+				  else {
+					  (elements.item(i)).style.boxShadow = "0 " + 0 + "px " + (z) + "px " + 0 + "px black";
+				  }
+
+				}
+			}
+			function scroll() {
+				var filters = document.getElementById('filters');
+		    var height = document.getElementsByTagName('nav')[0].offsetHeight;
+		    //alert(height);
+		    if ( window.pageYOffset > height && !filters.classList.contains('fixed-filters')) {
+		        filters.classList.add("fixed-filters");
+
+						var margin = parseInt(getComputedStyle(document.querySelector('#container')).marginTop);
+						//alert((filters.offsetHeight + margin));
+
+		        document.getElementById('container').style.marginTop = (filters.offsetHeight + margin) + "px";
+		    }
+				else if (window.pageYOffset > height && filters.classList.contains('fixed-filters')) {
+
+				}
+		    else {
+		        filters.classList.remove("fixed-filters");
+		        document.getElementById('container').style.marginTop = null;
+		    }
+			}
+			//window.onscroll = function() { scroll(); }
+
+			function hasClass(element, cls) {
+			    return element.className.indexOf(cls) > -1;
+			}
+
+			function collapse() {
+				var filter = document.getElementById('filters');
+				var filterBar = document.getElementById("filtersBar");
+				var arrow = document.getElementById('arrow');
+				if(hasClass(filter, 'collapsed')) {
+					filter.classList.remove('collapsed');
+					arrow.classList.add('arrow-up');
+					arrow.classList.remove('arrow-down');
+					//arrow.classList.remove('arrow-down');
+					if (filter.style.removeProperty) {
+					    filter.style.removeProperty('max-height');
+					} else {
+					    filter.style.removeAttribute('max-height');
+					}
+				}
+				else {
+					filter.style.maxHeight = filterBar.offsetHeight + "px";
+					filter.classList.add('collapsed');
+					arrow.classList.add('arrow-down');
+					arrow.classList.remove('arrow-up');
+
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+		<div class="shadow" style="z-index: 2; position: relative">
+			<nav style="z-index: 2; position: relative" class="clearfix shadow">
+				<div class="wrapper">
+					<h1><a href="index.html">res<span style="font-weight: 400">TOUR</span>ants</a></h1>
+					<form>
+					  <input class="searchbar search-field" type="text" name="firstname" placeholder="Around"><!-Cannot have space between inline elements that are supposed to be together in code.
+					  -><input class="searchbar search-field" type="text" name="lastname" placeholder="What"></input><!-Cannot have space between inline elements that are supposed to be together in code.
+					  -><input class="searchbar submit-button" type="submit" value="Submit"></input>
+					</form>
+				</div>
+			</nav>
+		</div>
+		<div id="container" class="wrapper clearfix">
+			<div id="review" class="wrapper shadow clearfix" style="z-index: 2;">
+
+				<div class="map">
+					<img src="http://placehold.it/400x400?text=Map">
+
+				</div>
+
+
+				<h1>Restaurant Name</h1>
+				<h6>Overall Stars</h6>
+				<div class="stars">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+					<img src="images/star.png">
+				</div>
+				<div class="info">
+					<h2>Directions</h2>
+					<h3>Distance</h3>
+					<p>Categories</p>
+				</div>
+			</div>
+			<div>
+				<div class="review-overviews shadow" id="yelpReview" style="z-index: 2">
+					<div class="review-stars">
+						<img src="images/star.png">
+						<img src="images/star.png">
+						<img src="images/star.png">
+						<img src="images/star.png">
+					</div>
+					<h1>Yelp Reviews</h1>
+
+					<hr>
+					<h2>Most Helpful</h2>
+					<div class="specific-stars">
+						<img src="images/star.png">
+						<img src="images/star.png">
+						<img src="images/star.png">
+						<img src="images/star.png">
+					</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum risus eget egestas tristique. Praesent hendrerit condimentum enim non congue. Maecenas et mauris sem. Etiam nec orci vel dui mattis porta. Maecenas sed mi vel velit scelerisque elementum. Proin elementum maximus enim, mollis tempus orci iaculis sit amet. Vestibulum iaculis ipsum non iaculis commodo. Aenean imperdiet nibh quis diam pretium consectetur. Ut lobortis at lacus non laoreet. Etiam ullamcorper tellus neque, vel volutpat odio rutrum id. Nulla facilisi. Fusce consequat augue ut magna sollicitudin tristique. Ut pharetra sollicitudin elit sit amet mattis. Pellentesque dictum vehicula pharetra. Nunc ac ex condimentum, malesuada eros a, dictum ante. Praesent vulputate, nisi non consectetur scelerisque, quam dolor elementum nunc, eget luctus leo orci sed quam.</p>
+				</div>
+
+				<div class="review-overviews shadow" id="googleReview" style="z-index: 2">
+					<div class="review-stars">
+						<img src="images/star.png">
+						<img src="images/star.png">
+						<img src="images/star.png">
+						<img src="images/star.png">
+					</div>
+					<h1>Google Reviews</h1>
+					<hr>
+					<h2>Most Helpful</h2>
+					<div class="specific-stars">
+						<img src="images/star.png">
+						<img src="images/star.png">
+						<img src="images/star.png">
+						<img src="images/star.png">
+					</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum risus eget egestas tristique. Praesent hendrerit condimentum enim non congue. Maecenas et mauris sem. Etiam nec orci vel dui mattis porta. Maecenas sed mi vel velit scelerisque elementum. Proin elementum maximus enim, mollis tempus orci iaculis sit amet. Vestibulum iaculis ipsum non iaculis commodo. Aenean imperdiet nibh quis diam pretium consectetur. Ut lobortis at lacus non laoreet. Etiam ullamcorper tellus neque, vel volutpat odio rutrum id. Nulla facilisi. Fusce consequat augue ut magna sollicitudin tristique. Ut pharetra sollicitudin elit sit amet mattis. Pellentesque dictum vehicula pharetra. Nunc ac ex condimentum, malesuada eros a, dictum ante. Praesent vulputate, nisi non consectetur scelerisque, quam dolor elementum nunc, eget luctus leo orci sed quam.</p>
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>
